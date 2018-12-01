@@ -10,5 +10,22 @@ package model;
  * @author Henrique Ricordi
  */
 public class Categoria {
-    
+    private int idCategoria;
+    private String name;
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }        
 }

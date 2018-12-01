@@ -10,5 +10,22 @@ package model;
  * @author Henrique Ricordi
  */
 public class Consumidor {
-    
+    private int idConsumidor;
+    private String nome;
+
+    public int getIdConsumidor() {
+        return idConsumidor;
+    }
+
+    public void setIdConsumidor(int idConsumidor) {
+        this.idConsumidor = idConsumidor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }        
 }

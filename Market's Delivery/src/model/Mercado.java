@@ -10,5 +10,22 @@ package model;
  * @author Henrique Ricordi
  */
 public class Mercado {
-    
+    private int idMercado;
+    private String nome;
+
+    public int getIdMercado() {
+        return idMercado;
+    }
+
+    public void setIdMercado(int idMercado) {
+        this.idMercado = idMercado;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }        
 }
