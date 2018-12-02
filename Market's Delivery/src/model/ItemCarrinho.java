@@ -13,7 +13,6 @@ public class ItemCarrinho {
     private int idItemCarrinho;
     private int quantidade;
     private double valorFinal;
-    private Carrinho carrinho;
     private Produto produto;
 
     public int getIdItemCarrinho() {
@@ -38,14 +37,6 @@ public class ItemCarrinho {
 
     public void setValorFinal(double valorFinal) {
         this.valorFinal = valorFinal;
-    }
-
-    public Carrinho getCarrinho() {
-        return carrinho;
-    }
-
-    public void setCarrinho(Carrinho carrinho) {
-        this.carrinho = carrinho;
     }
 
     public Produto getProduto() {

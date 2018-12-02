@@ -5,6 +5,10 @@
  */
 package view;
 
+import controler.Controle;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Henrique Ricordi
@@ -45,6 +49,11 @@ public class ComporCarrinho extends javax.swing.JFrame {
         });
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome do Produto");
 
@@ -135,11 +144,31 @@ public class ComporCarrinho extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Controle.getInstance().getCarrinho().adicionarCarrinho(Controle.getInstance().getListaResultado().get(jTable1.getSelectedRow()));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        if(Controle.getInstance().getCarrinho().getListaProdutos().isEmpty()){
+        } else { 
+            JOptionPane.showMessageDialog(jPanel1, "Nenhum produto adicionado!", "Finalizar", 0);
+        }
+        FinalizarCompra form = new FinalizarCompra();
+        form.setVisible(true);
+        form.jTable1.setModel(new DefaultTableModel(new String[]{"Código", "Descrição", "Marca", "Preço"}, Controle.getInstance().getCarrinho().getListaProdutos().size()));        
+        for (int c = 0; c < Controle.getInstance().getListaResultado().size(); c++) {
+            jTable1.setValueAt(Controle.getInstance().getListaResultado().get(c), c, 0);
+        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Controle.getInstance().setListaResultado(Controle.getInstance().buscarProduto(jTextField1.toString()));      
+        jTable1.setModel(new DefaultTableModel(new String[]{"Código", "Descrição", "Marca", "Preço"}, Controle.getInstance().getListaResultado().size()));        
+        for (int c = 0; c < Controle.getInstance().getListaResultado().size(); c++) {
+            jTable1.setValueAt(Controle.getInstance().getListaResultado().get(c), c, 0);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
