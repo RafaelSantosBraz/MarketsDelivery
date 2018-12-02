@@ -33,6 +33,7 @@ public class Controle {
     
     ArrayList<Produto> listaResultado;
     Carrinho carrinho = new Carrinho();
+    public String caminho;
     
     public ArrayList<Produto> buscarProduto(String textoBusca){
         ProdutoDAO produto;
