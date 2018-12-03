@@ -21,13 +21,12 @@ public class ProdutoDAO {
     private Connection con;
 
     public ProdutoDAO() throws SQLException {
-        //construtor da classe assim sempre vc vai ter uma conexao
         this.con = ConexaoPGSQL.getConnection();
     }
 
     public ArrayList<Produto> buscarProduto(String textoBuscar) throws SQLException {
         ArrayList<Produto> lista = new ArrayList<Produto>();
-        PreparedStatement stm = this.con.prepareStatement("SELECT * FROM Produto WHERE nome LIKE %" + textoBuscar + "%");
+        PreparedStatement stm = this.con.prepareStatement("SELECT * FROM Produto WHERE nome LIKE '%" + textoBuscar + "%'");
         ResultSet result = stm.executeQuery();
         while (result.next()) {
             Produto produto = new Produto();

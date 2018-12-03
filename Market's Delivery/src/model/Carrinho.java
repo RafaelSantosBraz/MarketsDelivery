@@ -12,22 +12,23 @@ import java.util.ArrayList;
  * @author Henrique Ricordi
  */
 public class Carrinho {
+
     private int idCarrinho;
     private double valorTotal;
     private boolean status;
     private Consumidor consumidor;
-    ArrayList<ItemCarrinho> listaProdutos;
-    
-    public void adicionarCarrinho(Produto produto){
+    private ArrayList<ItemCarrinho> listaProdutos;
+
+    public void adicionarCarrinho(Produto produto) {
         ItemCarrinho itemCarrinho = new ItemCarrinho();
 
         itemCarrinho.setProduto(produto);
         itemCarrinho.setQuantidade(1);
         itemCarrinho.setValorFinal(produto.getPreco());
-        
+
         listaProdutos.add(itemCarrinho);
     }
-    
+
     public int getIdCarrinho() {
         return idCarrinho;
     }
@@ -38,7 +39,7 @@ public class Carrinho {
 
     public double getValorTotal() {
         valorTotal = 0;
-        for(int i = 0; i < listaProdutos.size(); i++){
+        for (int i = 0; i < listaProdutos.size(); i++) {
             valorTotal += listaProdutos.get(i).getValorFinal();
         }
         return valorTotal;
@@ -62,7 +63,7 @@ public class Carrinho {
 
     public void setConsumidor(Consumidor consumidor) {
         this.consumidor = consumidor;
-    }        
+    }
 
     public ArrayList<ItemCarrinho> getListaProdutos() {
         return listaProdutos;
@@ -70,5 +71,5 @@ public class Carrinho {
 
     public void setListaProdutos(ArrayList<ItemCarrinho> listaProdutos) {
         this.listaProdutos = listaProdutos;
-    }        
+    }
 }

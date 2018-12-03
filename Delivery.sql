@@ -10,7 +10,7 @@ CREATE TABLE Mercado
  
 CREATE TABLE Funcionario 
 (idFuncionario INTEGER,
- nome   	 VARCHAR(200) NOT NULL,
+ nome   	   VARCHAR(200) NOT NULL auto_increment,
  idMercado     INTEGER,
  CONSTRAINT pk_funcionario PRIMARY KEY (idFuncionario),
  CONSTRAINT fk_mercado     FOREIGN KEY (idMercado) references Mercado(idMercado));
@@ -43,9 +43,9 @@ CONSTRAINT id_consumidor FOREIGN KEY (idConsumidor)references Consumidor (idCons
 CREATE TABLE ItemCarrinho
 (idItemCarrinho    INTEGER,
 quantidade         INTEGER,
-valorFinal	   FLOAT,
+valorFinal	   	   FLOAT,
 idCarrinho         INTEGER,
-idProduto  	   INTEGER,
+idProduto  	   	   INTEGER,
 CONSTRAINT id_itemCarrinho  PRIMARY KEY (idItemCarrinho),
 CONSTRAINT id_carrinho  FOREIGN KEY  (idCarrinho) references Carrinho (idCarrinho),
 CONSTRAINT id_produto   FOREIGN KEY  (idProduto) references Produto (idProduto));

@@ -99,7 +99,7 @@ public class Run extends javax.swing.JFrame {
         form.jFileChooser1.addChoosableFileFilter(filtroPDF);
         form.jFileChooser1.setAcceptAllFileFilterUsed(false);
         if (form.jFileChooser1.showOpenDialog(this) == form.jFileChooser1.APPROVE_OPTION) {
-        Controle.getInstance().caminho = form.jFileChooser1.getSelectedFile().getAbsolutePath();
+        Controle.getInstance().setCaminho(form.jFileChooser1.getSelectedFile().getAbsolutePath());
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 

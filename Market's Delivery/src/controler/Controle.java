@@ -5,6 +5,7 @@
  */
 package controler;
 
+import dao.DAOControle;
 import dao.ProdutoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,9 +18,8 @@ import model.Produto;
  *
  * @author Henrique Ricordi
  */
-
 public class Controle {
-    
+
     //<editor-fold defaultstate="collapsed" desc="SINGLETON">
     private static Controle instance;
 
@@ -30,20 +30,22 @@ public class Controle {
         return instance;
     }
     //</editor-fold> 
-    
-    ArrayList<Produto> listaResultado;
-    Carrinho carrinho = new Carrinho();
-    public String caminho;
-    
-    public ArrayList<Produto> buscarProduto(String textoBusca){
-        ProdutoDAO produto;
-        try {
-            produto = new ProdutoDAO();
-            return produto.buscarProduto(textoBusca);
-        } catch (SQLException ex) {
-            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }    
+
+    private ArrayList<Produto> listaResultado;
+    private Carrinho carrinho = new Carrinho();
+    private String caminho;
+
+    public String getCaminho() {
+        return caminho;
+    }
+
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
+    }
+
+    public ArrayList<Produto> buscarProduto(String textoBusca) {
+        DAOControle c = new DAOControle();
+        return c.buscarProduto(textoBusca);
     }
 
     public ArrayList<Produto> getListaResultado() {
@@ -52,7 +54,7 @@ public class Controle {
 
     public void setListaResultado(ArrayList<Produto> listaResultado) {
         this.listaResultado = listaResultado;
-    }       
+    }
 
     public Carrinho getCarrinho() {
         return carrinho;
@@ -60,5 +62,5 @@ public class Controle {
 
     public void setCarrinho(Carrinho carrinho) {
         this.carrinho = carrinho;
-    }            
+    }
 }
