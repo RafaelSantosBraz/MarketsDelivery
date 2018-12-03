@@ -7,6 +7,9 @@ package controler;
 
 import dao.DAOControle;
 import dao.ProdutoDAO;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -35,7 +38,24 @@ public class Controle {
     private Carrinho carrinho = new Carrinho();
     private String caminho;
 
-    public String getCaminho() {
+    public boolean alterarProdutos(String caminho) {
+        try {
+            FileReader arq = new FileReader(caminho);
+            BufferedReader lerArq = new BufferedReader(arq);
+            String linha = lerArq.readLine();
+            while (linha != null) {
+                String dadosProduto[] = linha.split(";");
+                linha = lerArq.readLine();
+            }
+            arq.close();
+            return true;
+        } catch (IOException e) {
+            System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
+            return false;
+        }
+}
+
+public String getCaminho() {
         return caminho;
     }
 
