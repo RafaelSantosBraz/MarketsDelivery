@@ -30,7 +30,7 @@ public class ProdutoDAO {
         ResultSet result = stm.executeQuery();
         while (result.next()) {
             Produto produto = new Produto();
-            produto.setIdProduto(result.getInt("id"));
+            produto.setIdProduto(result.getInt("idProduto"));
             produto.setNome(result.getString("nome"));
             produto.setMarca(result.getString("marca"));
             produto.setPreco(result.getDouble("preco"));
@@ -39,5 +39,20 @@ public class ProdutoDAO {
         result.close();
         stm.close();
         return lista;
+    }
+
+    public Boolean atualizarProduto(Produto produto) throws SQLException {
+        PreparedStatement stm = this.con.prepareStatement("update Produto set nome = '" + produto.getNome() + "', marca = '" + produto.getMarca() + "', preco = " + produto.getPreco() + " where nome = '" + produto.getNome() + "';");
+       stm.executeUpdate();        
+        //result.close();
+        stm.close();
+        return true;
+    }
+    
+    public Boolean inserirProduto(Produto produto) throws SQLException {
+        PreparedStatement stm = this.con.prepareStatement("INSERT INTO Produto VALUES (DEFAULT, '" + produto.getNome() + "', '" + produto.getMarca() + "', " + produto.getPreco() + ")");
+        stm.execute();                
+        stm.close();
+        return true;
     }
 }

@@ -1,11 +1,11 @@
-idProduto;nome;marca;preço
-1;Sabonete;Nivea;1.09
-2;Shampoo;Clear;12.99
-3;Leite Achocolatado;Toddynho;2.50
-4;Milho de Pipoca;Yoki;3.19
-5;Óleo de Soja;Suavit;3.69
-6;Caixa de Bomboms;Lacta;8.89
-7;Azeitona;Vale Fertil;6.49
-8;Arroz;Safra Sul;12.99
-9;Biscoito Rechado;Passatempo;2.09
-10;Balas;TicTac;2.00
+idProduto,nome,marca,preço
+1,Sabonete,Nivea,1.09
+2,Shampoo,Clear,12.99
+3,Leite Achocolatado,Toddynho,2.50
+4,Milho de Pipoca,Yoki,3.19
+5,Oleo de Soja,Suavit,3.69
+6,Caixa de Bomboms,Lacta,8.89
+7,Azeitona,Vale Fertil,6.49
+8,Arroz,Safra Sul,12.99
+9,Biscoito Rechado,Passatempo,2.09
+10,Balas,TicTac,2.00

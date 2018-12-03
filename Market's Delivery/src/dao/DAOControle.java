@@ -25,4 +25,21 @@ public class DAOControle {
             return new ArrayList<>();
         }
     }
+
+    public Boolean atualizarProdutos(ArrayList<Produto> produtos) {
+        for (Produto p : produtos) {
+            try {
+                ProdutoDAO pDAO = new ProdutoDAO();
+                if (pDAO.buscarProduto(p.getNome()).isEmpty()) {
+                    pDAO.inserirProduto(p);
+                } else {
+                    pDAO.atualizarProduto(p);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao executar inserção no Banco de Dados!", "Erro de SQL", 0);
+                return false;
+            }
+        }
+        return true;
+    }
 }

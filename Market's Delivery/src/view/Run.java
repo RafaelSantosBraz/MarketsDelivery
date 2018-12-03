@@ -6,6 +6,7 @@
 package view;
 
 import controler.Controle;
+import java.io.File;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -35,6 +36,7 @@ public class Run extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jButton1.setText("Consumidor");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,17 +91,20 @@ public class Run extends javax.swing.JFrame {
         // TODO add your handling code here:
         ComporCarrinho form = new ComporCarrinho();
         form.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         AlterarProdutos form = new AlterarProdutos();
-        form.setVisible(true);
+        //form.setVisible(true);
+        //this.setVisible(false);
         FileNameExtensionFilter filtroPDF = new FileNameExtensionFilter("Arquivo .csv", "csv");
         form.jFileChooser1.addChoosableFileFilter(filtroPDF);
         form.jFileChooser1.setAcceptAllFileFilterUsed(false);
+        form.jFileChooser1.setCurrentDirectory(new File("."));
         if (form.jFileChooser1.showOpenDialog(this) == form.jFileChooser1.APPROVE_OPTION) {
-        Controle.getInstance().setCaminho(form.jFileChooser1.getSelectedFile().getAbsolutePath());
+            Controle.getInstance().alterarProdutos(form.jFileChooser1.getSelectedFile().getAbsolutePath());            
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 

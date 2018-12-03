@@ -19,6 +19,10 @@ public class Carrinho {
     private Consumidor consumidor;
     private ArrayList<ItemCarrinho> listaProdutos;
 
+    public Carrinho() {
+        listaProdutos = new ArrayList<>();
+    }
+
     public void adicionarCarrinho(Produto produto) {
         ItemCarrinho itemCarrinho = new ItemCarrinho();
 

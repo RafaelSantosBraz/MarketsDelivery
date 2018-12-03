@@ -6,8 +6,10 @@
 package view;
 
 import controler.Controle;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.ItemCarrinho;
 
 /**
  *
@@ -41,6 +43,11 @@ public class ComporCarrinho extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,27 +155,38 @@ public class ComporCarrinho extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        if(Controle.getInstance().getCarrinho().getListaProdutos().isEmpty()){
-        } else { 
+        // TODO add your handling code here:       
+        if (Controle.getInstance().getCarrinho().getListaProdutos().isEmpty()) {
             JOptionPane.showMessageDialog(jPanel1, "Nenhum produto adicionado!", "Finalizar", 0);
-        }
-        FinalizarCompra form = new FinalizarCompra();
-        form.setVisible(true);
-        form.jTable1.setModel(new DefaultTableModel(new String[]{"Código", "Descrição", "Marca", "Preço"}, Controle.getInstance().getCarrinho().getListaProdutos().size()));        
-        for (int c = 0; c < Controle.getInstance().getListaResultado().size(); c++) {
-            jTable1.setValueAt(Controle.getInstance().getListaResultado().get(c), c, 0);
+        } else {
+            FinalizarCompra form = new FinalizarCompra();
+            form.setVisible(true);
+            this.setVisible(false);
+            form.jTable1.setModel(new DefaultTableModel(new String[]{"Código", "Descrição", "Marca", "Preço"}, Controle.getInstance().getCarrinho().getListaProdutos().size()));
+            for (int c = 0; c < Controle.getInstance().getCarrinho().getListaProdutos().size(); c++) {
+                form.jTable1.setValueAt(Controle.getInstance().getCarrinho().getListaProdutos().get(c).getProduto().getIdProduto(), c, 0);
+                form.jTable1.setValueAt(Controle.getInstance().getCarrinho().getListaProdutos().get(c).getProduto().getNome(), c, 1);
+                form.jTable1.setValueAt(Controle.getInstance().getCarrinho().getListaProdutos().get(c).getProduto(), c, 2);
+                form.jTable1.setValueAt("R$" + Controle.getInstance().getCarrinho().getListaProdutos().get(c).getProduto().getPreco(), c, 3);
+            }
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Controle.getInstance().setListaResultado(Controle.getInstance().buscarProduto(jTextField1.toString()));      
-        jTable1.setModel(new DefaultTableModel(new String[]{"Código", "Descrição", "Marca", "Preço"}, Controle.getInstance().getListaResultado().size()));        
+        Controle.getInstance().setListaResultado(Controle.getInstance().buscarProduto(jTextField1.getText()));
+        jTable1.setModel(new DefaultTableModel(new String[]{"Código", "Descrição", "Marca", "Preço"}, Controle.getInstance().getListaResultado().size()));
         for (int c = 0; c < Controle.getInstance().getListaResultado().size(); c++) {
-            jTable1.setValueAt(Controle.getInstance().getListaResultado().get(c), c, 0);
+            jTable1.setValueAt(Controle.getInstance().getListaResultado().get(c).getIdProduto(), c, 0);
+            jTable1.setValueAt(Controle.getInstance().getListaResultado().get(c).getNome(), c, 1);
+            jTable1.setValueAt(Controle.getInstance().getListaResultado().get(c).getMarca(), c, 2);
+            jTable1.setValueAt("R$" + Controle.getInstance().getListaResultado().get(c).getPreco(), c, 3);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
